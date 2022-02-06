@@ -20,6 +20,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -28,6 +29,7 @@ import androidx.constraintlayout.compose.Dimension
 import coil.ImageLoader
 import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
+import com.example.rusin.R
 import com.example.rusin.domain.model.Post
 import com.skydoves.landscapist.coil.CoilImage
 
@@ -81,7 +83,7 @@ fun PostContent(
                     }
                 },
                 failure = {
-                    Text(text = "не удалось получить изображение")
+                    Text(stringResource(id = R.string.image_load_error))
                 }
             )
         }
@@ -140,7 +142,7 @@ fun PostContent(
                 Icon(
                     imageVector = Icons.Filled.Refresh,
                     tint = iconColor,
-                    contentDescription = "вернуться к предыдущему посту",
+                    contentDescription = stringResource(id = R.string.previous_post),
                     modifier = modifier
                         .scale(scaleX = -1f, scaleY = 1f)
                         .fillMaxSize()
@@ -161,7 +163,7 @@ fun PostContent(
                 Icon(
                     imageVector = Icons.Filled.ArrowForward,
                     tint = Color.Green,
-                    contentDescription = "следующий пост",
+                    contentDescription = stringResource(id = R.string.next_post),
                     modifier = modifier
                         .fillMaxSize()
                         .padding(12.dp)

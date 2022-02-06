@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.pager.*
@@ -56,7 +57,7 @@ fun Tabs(tabs: List<TabItem>, pagerState: PagerState, modifier: Modifier = Modif
                         pagerState.animateScrollToPage(index)
                     }
                 },
-                text = { Text(tab.title) }
+                text = { Text(stringResource(id = tab.title)) }
             )
         }
     }
