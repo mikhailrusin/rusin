@@ -26,18 +26,25 @@ import androidx.constraintlayout.compose.Dimension
 import coil.ImageLoader
 import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
+import com.example.rusin.domain.model.Post
 import com.skydoves.landscapist.coil.CoilImage
 
 @Composable
-fun PostContent(modifier: Modifier = Modifier) {
+fun PostContent(
+    post: Post,
+    index: Int,
+    onPreviousPost: () -> Unit,
+    onNextPost: () -> Unit,
+    modifier: Modifier = Modifier
+) {
     ConstraintLayout(
         modifier = Modifier.fillMaxSize()
     ) {
-        val (post, title, controls) = createRefs()
+        val (postCard, title, controls) = createRefs()
 
         Card(
             modifier = modifier
-                .constrainAs(post) {
+                .constrainAs(postCard) {
                     top.linkTo(parent.top, margin = 12.dp)
                     bottom.linkTo(controls.top, margin = 12.dp)
                     height = Dimension.fillToConstraints
@@ -58,7 +65,7 @@ fun PostContent(modifier: Modifier = Modifier) {
                 .build()
 
             CoilImage(
-                imageModel = "https://static.devli.ru/public/images/gifs/202109/518d3a2b-42eb-4b05-8e81-a5329a1d8288.gif",
+                imageModel = post.url,
                 imageLoader = { imageLoader },
 //                contentScale = ContentScale.Crop,
                 loading = {
@@ -80,7 +87,7 @@ fun PostContent(modifier: Modifier = Modifier) {
         Box(
             modifier = Modifier
                 .constrainAs(title) {
-                    bottom.linkTo(post.bottom)
+                    bottom.linkTo(postCard.bottom)
                 }
                 .fillMaxWidth()
                 .wrapContentHeight()
@@ -96,7 +103,7 @@ fun PostContent(modifier: Modifier = Modifier) {
                 .padding(horizontal = 12.dp, vertical = 16.dp),
         ) {
             Text(
-                text = "title",
+                text = post.description,
                 style = TextStyle(color = Color.White, fontSize = 20.sp)
             )
         }
@@ -108,13 +115,14 @@ fun PostContent(modifier: Modifier = Modifier) {
             }
         ) {
             IconButton(
-                onClick = { /*TODO*/ },
+                onClick = onPreviousPost,
                 modifier = modifier
                     .padding(end = 8.dp)
                     .size(50.dp)
                     .clip(CircleShape)
                     .shadow(elevation = 8.dp, shape = CircleShape, clip = true)
-                    .background(Color.White)
+                    .background(Color.White),
+                enabled = index > 0
             ) {
                 Icon(
                     imageVector = Icons.Filled.Refresh,
@@ -127,7 +135,7 @@ fun PostContent(modifier: Modifier = Modifier) {
                 )
             }
             IconButton(
-                onClick = { /*TODO*/ },
+                onClick = onNextPost,
                 modifier = modifier
                     .padding(end = 8.dp)
                     .size(50.dp)
