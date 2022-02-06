@@ -42,7 +42,7 @@ fun PostContent(
     modifier: Modifier = Modifier
 ) {
     ConstraintLayout(
-        modifier = Modifier.fillMaxSize()
+        modifier = modifier.fillMaxSize()
     ) {
         val (postCard, title, controls) = createRefs()
 
@@ -74,7 +74,7 @@ fun PostContent(
                 contentScale = ContentScale.FillWidth,
                 loading = {
                     Box(
-                        modifier = Modifier
+                        modifier = modifier
                             .fillMaxSize()
                             .padding(12.dp),
                         contentAlignment = Alignment.Center
@@ -89,7 +89,7 @@ fun PostContent(
         }
 
         Box(
-            modifier = Modifier
+            modifier = modifier
                 .constrainAs(title) {
                     bottom.linkTo(postCard.bottom)
                 }

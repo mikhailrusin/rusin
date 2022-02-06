@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">rusin</string>
-    <string name="network_error">An error occured when tried to load data</string>
+    <string name="network_error">An error occurred when tried to load data</string>
     <string name="category_latest">Latest</string>
     <string name="category_best">Best</string>
     <string name="category_hot">Hot</string>
@@ -9,4 +9,5 @@
     <string name="previous_post">previous post</string>
     <string name="next_post">next post</string>
     <string name="image_load_error">Could not get image</string>
+    <string name="retry">Retry</string>
 </resources>

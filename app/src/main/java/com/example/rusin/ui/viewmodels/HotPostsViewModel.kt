@@ -6,4 +6,4 @@ import com.example.rusin.ui.screens.posts.ContentType
 class HotPostsViewModel(
     contentType: ContentType,
     interactor: PostsInteractor
-) : BasePostsViewModel(contentType, interactor)
+) : PostsViewModel(contentType, interactor)

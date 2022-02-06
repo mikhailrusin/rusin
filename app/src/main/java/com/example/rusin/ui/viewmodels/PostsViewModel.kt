@@ -4,14 +4,17 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.rusin.domain.interactor.PostsInteractor
 import com.example.rusin.domain.model.Post
+import com.example.rusin.ui.screens.common.PostsViewState
 import com.example.rusin.ui.screens.posts.ContentType
 import kotlinx.coroutines.launch
 
-abstract class BasePostsViewModel(
+abstract class PostsViewModel(
     private val contentType: ContentType,
     private val interactor: PostsInteractor
 ) : ViewModel() {
@@ -25,6 +28,10 @@ abstract class BasePostsViewModel(
 
     var currentPostIndex: Int by mutableStateOf(-1)
 
+    private val _viewState = MutableLiveData<PostsViewState>()
+    val viewState: LiveData<PostsViewState>
+        get() = _viewState
+
 
     init {
         getPosts()
@@ -32,6 +39,7 @@ abstract class BasePostsViewModel(
 
     private fun getPosts() {
         viewModelScope.launch {
+            _viewState.postValue(PostsViewState.Loading)
             runCatching {
                 interactor.getLatestPosts(currentPage, contentType.value)
             }.onSuccess { posts ->
@@ -40,8 +48,11 @@ abstract class BasePostsViewModel(
                     latestPosts.addAll(posts)
                     currentPostIndex++
                 }
-            }.onFailure {
 
+                _viewState.postValue(PostsViewState.SuccessfulLoad)
+            }.onFailure {
+                it.printStackTrace()
+                _viewState.postValue(PostsViewState.Failure)
             }
         }
     }
@@ -60,6 +71,10 @@ abstract class BasePostsViewModel(
         else {
             currentPostIndex += 1
         }
+    }
+
+    fun retry() {
+        getPosts()
     }
 
     companion object {
