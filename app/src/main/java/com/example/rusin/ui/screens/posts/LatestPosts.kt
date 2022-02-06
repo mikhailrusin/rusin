@@ -1,4 +1,4 @@
-package com.example.rusin.ui.screens
+package com.example.rusin.ui.screens.posts
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Surface

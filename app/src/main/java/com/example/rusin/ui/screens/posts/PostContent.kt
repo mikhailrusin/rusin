@@ -1,4 +1,4 @@
-package com.example.rusin.ui.screens
+package com.example.rusin.ui.screens.posts
 
 import android.os.Build
 import androidx.compose.foundation.background

@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.rusin.domain.interactor.PostsInteractor
 import com.example.rusin.domain.model.Post
-import com.example.rusin.ui.screens.ContentType
+import com.example.rusin.ui.screens.posts.ContentType
 import kotlinx.coroutines.launch
 
 abstract class PostsViewModel(
