@@ -47,7 +47,7 @@ abstract class PostsViewModel(
     }
 
     fun previousPost() {
-        if (currentPostIndex == -1) return
+        if (currentPostIndex == 0) return
 
         currentPostIndex -= 1
     }

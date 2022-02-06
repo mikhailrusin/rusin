@@ -1,6 +1,7 @@
 package com.example.rusin.ui.screens.posts
 
 import android.os.Build
+import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -10,11 +11,11 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -33,7 +34,7 @@ import com.skydoves.landscapist.coil.CoilImage
 @Composable
 fun PostContent(
     post: Post,
-    index: Int,
+    currentPostIndex: Int,
     onPreviousPost: () -> Unit,
     onNextPost: () -> Unit,
     modifier: Modifier = Modifier
@@ -81,7 +82,7 @@ fun PostContent(
                     }
                 },
                 failure = {
-                    Text(text = "image request failed")
+                    Text(text = "не удалось получить изображение")
                 }
             )
         }
@@ -116,19 +117,30 @@ fun PostContent(
                 centerHorizontallyTo(parent)
             }
         ) {
+            val previousPostButtonEnabled = currentPostIndex > 0
+            val backgroundColor by animateColorAsState(
+                if (previousPostButtonEnabled) Color.White
+                else Color.LightGray.copy(alpha = 0.3f)
+            )
+            val iconColor by animateColorAsState(
+                if (previousPostButtonEnabled) Color.Red
+                else Color.Red.copy(alpha = 0.3f)
+            )
             IconButton(
                 onClick = onPreviousPost,
                 modifier = modifier
                     .padding(end = 8.dp)
                     .size(50.dp)
                     .clip(CircleShape)
-                    .shadow(elevation = 8.dp, shape = CircleShape, clip = true)
-                    .background(Color.White),
-                enabled = index > 0
+                    .background(Color.Gray.copy(alpha = 0.4f))
+                    .padding(1.dp)
+                    .clip(CircleShape)
+                    .background(backgroundColor),
+                enabled = previousPostButtonEnabled
             ) {
                 Icon(
                     imageVector = Icons.Filled.Refresh,
-                    tint = Color.Red,
+                    tint = iconColor,
                     contentDescription = "вернуться к предыдущему посту",
                     modifier = modifier
                         .scale(scaleX = -1f, scaleY = 1f)
@@ -139,10 +151,12 @@ fun PostContent(
             IconButton(
                 onClick = onNextPost,
                 modifier = modifier
-                    .padding(end = 8.dp)
+                    .padding(start = 8.dp)
                     .size(50.dp)
                     .clip(CircleShape)
-                    .shadow(elevation = 8.dp, shape = CircleShape, clip = true)
+                    .background(Color.Gray.copy(alpha = 0.4f))
+                    .padding(1.dp)
+                    .clip(CircleShape)
                     .background(Color.White)
             ) {
                 Icon(
