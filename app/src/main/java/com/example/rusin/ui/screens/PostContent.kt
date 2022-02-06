@@ -17,6 +17,7 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
@@ -50,6 +51,7 @@ fun PostContent(
                     height = Dimension.fillToConstraints
                 },
             shape = RoundedCornerShape(12.dp),
+            backgroundColor = Color.Black,
             elevation = 4.dp
         ) {
             val context = LocalContext.current
@@ -67,7 +69,7 @@ fun PostContent(
             CoilImage(
                 imageModel = post.url,
                 imageLoader = { imageLoader },
-//                contentScale = ContentScale.Crop,
+                contentScale = ContentScale.FillWidth,
                 loading = {
                     Box(
                         modifier = Modifier
