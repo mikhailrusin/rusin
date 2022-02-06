@@ -10,7 +10,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.rusin.TopBar
 import com.google.accompanist.pager.*
 import kotlinx.coroutines.launch
 
@@ -41,7 +40,7 @@ fun Tabs(tabs: List<TabItem>, pagerState: PagerState, modifier: Modifier = Modif
         backgroundColor = Color.White,
         indicator = { pos ->
             TabRowDefaults.Indicator(
-                Modifier
+                modifier
                     .padding(horizontal = 8.dp)
                     .pagerTabIndicatorOffset(
                         pagerState,
