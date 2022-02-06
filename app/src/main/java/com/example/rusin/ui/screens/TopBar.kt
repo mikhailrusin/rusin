@@ -27,7 +27,7 @@ fun TopBar(modifier: Modifier = Modifier) {
             Icons.Rounded.AccountCircle,
             contentDescription = "User avatar",
             modifier = modifier.size(40.dp),
-            tint = Color.Gray
+            tint = Color.LightGray
         )
         Text(
             text = "Developers Life",
