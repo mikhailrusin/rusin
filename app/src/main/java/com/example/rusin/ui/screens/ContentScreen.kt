@@ -11,6 +11,6 @@ enum class ContentType { Latest, Best, Hot }
 @Composable
 fun ContentScreen(contentType: ContentType, modifier: Modifier = Modifier) {
     Surface(modifier = modifier.padding(horizontal = 16.dp)) {
-        Post()
+        PostContent()
     }
 }

@@ -17,7 +17,6 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
@@ -30,7 +29,7 @@ import coil.decode.ImageDecoderDecoder
 import com.skydoves.landscapist.coil.CoilImage
 
 @Composable
-fun Post(modifier: Modifier = Modifier) {
+fun PostContent(modifier: Modifier = Modifier) {
     ConstraintLayout(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -44,7 +43,7 @@ fun Post(modifier: Modifier = Modifier) {
                     height = Dimension.fillToConstraints
                 },
             shape = RoundedCornerShape(12.dp),
-            elevation = 8.dp
+            elevation = 4.dp
         ) {
             val context = LocalContext.current
             val imageLoader = ImageLoader.Builder(context)
@@ -61,7 +60,7 @@ fun Post(modifier: Modifier = Modifier) {
             CoilImage(
                 imageModel = "https://static.devli.ru/public/images/gifs/202109/518d3a2b-42eb-4b05-8e81-a5329a1d8288.gif",
                 imageLoader = { imageLoader },
-                contentScale = ContentScale.Crop,
+//                contentScale = ContentScale.Crop,
                 loading = {
                     Box(
                         modifier = Modifier
@@ -85,6 +84,7 @@ fun Post(modifier: Modifier = Modifier) {
                 }
                 .fillMaxWidth()
                 .wrapContentHeight()
+                .clip(RoundedCornerShape(bottomStart = 12.dp, bottomEnd = 12.dp))
                 .background(
                     brush = Brush.verticalGradient(
                         colors = listOf(
@@ -93,7 +93,7 @@ fun Post(modifier: Modifier = Modifier) {
                         )
                     )
                 )
-                .padding(horizontal = 12.dp, vertical = 20.dp)
+                .padding(horizontal = 12.dp, vertical = 16.dp),
         ) {
             Text(
                 text = "title",
