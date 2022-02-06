@@ -11,7 +11,7 @@ import com.example.rusin.domain.model.Post
 import com.example.rusin.ui.screens.posts.ContentType
 import kotlinx.coroutines.launch
 
-abstract class PostsViewModel(
+abstract class BasePostsViewModel(
     private val contentType: ContentType,
     private val interactor: PostsInteractor
 ) : ViewModel() {

@@ -64,7 +64,6 @@ fun PostContent(
                         add(GifDecoder())
                     }
                 }
-                .crossfade(true)
                 .build()
 
             CoilImage(
