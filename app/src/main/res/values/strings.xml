@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">rusin</string>
+    <string name="toolbar_title" translatable="false">Developers Life</string>
+    <string name="network_error">Произошла ошибка при загрузке данных</string>
+    <string name="category_latest">Последние</string>
+    <string name="category_best">Лучшие</string>
+    <string name="category_hot">Горячие</string>
+    <string name="image_load_error">Не удалось получить изображение</string>
+    <string name="user_avatar">аватар пользователя</string>
+    <string name="previous_post">предыдущий пост</string>
+    <string name="next_post">следующий пост</string>
+    <string name="retry">Повторить</string>
 </resources>
